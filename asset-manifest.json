@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/m3_life-component-cycle/static/css/main.f855e6bc.css",
+    "main.js": "/m3_life-component-cycle/static/js/main.0451c842.js",
+    "static/js/453.8f57bc11.chunk.js": "/m3_life-component-cycle/static/js/453.8f57bc11.chunk.js",
+    "static/media/logo.svg": "/m3_life-component-cycle/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/m3_life-component-cycle/index.html",
+    "main.f855e6bc.css.map": "/m3_life-component-cycle/static/css/main.f855e6bc.css.map",
+    "main.0451c842.js.map": "/m3_life-component-cycle/static/js/main.0451c842.js.map",
+    "453.8f57bc11.chunk.js.map": "/m3_life-component-cycle/static/js/453.8f57bc11.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.0451c842.js"
+  ]
+}
