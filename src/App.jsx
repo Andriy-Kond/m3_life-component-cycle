@@ -6,6 +6,7 @@ import AddTodo from "TodoList/AddTodo";
 import shortid from "shortid";
 import FilterTodo from "TodoList/FilterTodo";
 import LoginForm from "LoginForm";
+import Modal from "modal";
 
 // import RegisterForm from "TodoList/RegisterForm";
 
@@ -13,6 +14,7 @@ class App extends Component {
   state = {
     todos: [],
     filter: "",
+    isOpenModal: false,
   };
 
   componentDidMount = () => {
@@ -73,15 +75,19 @@ class App extends Component {
 
   submitForm = todoData => console.log("todoData :>> ", todoData);
 
+  toggleModal = () => {
+    this.setState(prevState => ({ isOpenModal: !prevState.isOpenModal }));
+  };
+
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, isOpenModal } = this.state;
     const completedTodoCount = this.getCompletedTodoCount();
     const visibleTodos = this.getVisibleTodos();
     const totalTodosCount = todos.length;
 
     return (
-      <div>
-        <p>Всього завдань: {totalTodosCount}</p>
+      <>
+        {/* <p>Всього завдань: {totalTodosCount}</p>
         <p>Виконаних завдань: {completedTodoCount}</p>
         <TodoList
           todos={visibleTodos}
@@ -93,8 +99,24 @@ class App extends Component {
         <FilterTodo onChange={this.changeFilter} value={filter} />
 
         <br />
-        <LoginForm />
-      </div>
+        <LoginForm /> */}
+        <button type="button" onClick={this.toggleModal}>
+          Open modal
+        </button>
+        {isOpenModal && (
+          <Modal toggleModal={this.toggleModal}>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
+              quis debitis quibusdam doloremque perspiciatis distinctio
+              consequuntur nobis ipsa dolore earum quisquam qui eveniet maxime
+              ad, numquam libero quos, veritatis accusantium similique tempora
+              nemo? Quo consequuntur iusto eius aut facilis doloribus aliquam
+              quae vitae dolor voluptatibus? Accusamus corrupti cumque odio
+              illo.
+            </p>
+          </Modal>
+        )}
+      </>
     );
   }
 }
