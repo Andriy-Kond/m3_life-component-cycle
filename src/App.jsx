@@ -11,30 +11,35 @@ import LoginForm from "LoginForm";
 
 class App extends Component {
   state = {
-    todos: initialTodos,
+    todos: [],
     filter: "",
   };
 
+  componentDidMount = () => {
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+
+    parsedTodos && this.setState({ todos: parsedTodos });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("App >> componentDidUpdate >> prevState:::", prevState);
+    // console.log("App >> componentDidUpdate >> this.state :>> ", this.state);
+
+    if (prevState.todos !== this.state.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
+
   deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    this.setState(({ todos }) => ({
+      todos: todos.filter(todo => todo.id !== todoId),
     }));
   };
 
-  // toggleCompleted = todoId => {
-  //   this.setState(prevState => ({
-  //     todos: prevState.todos.map(todo => {
-  //       if (todo.id === todoId) {
-  //         return { ...todo, completed: !todo.completed };
-  //       }
-
-  //       return todo;
-  //     }),
-  //   }));
-
   toggleCompleted = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.map(todo =>
+    this.setState(({ todos }) => ({
+      todos: todos.map(todo =>
         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
       ),
     }));
@@ -76,18 +81,6 @@ class App extends Component {
 
     return (
       <div>
-        {/* <input
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-          // onChange комбінує onBlur/onFocus і onInput
-          // onBlur={console.log("onBlur")}
-          // onFocus={console.log("onFocus")}
-        /> */}
-
-        {/* <RegisterForm handleSubmit={this.submitForm} />
-        <RegisterForm handleSubmit={this.submitForm} /> */}
-
         <p>Всього завдань: {totalTodosCount}</p>
         <p>Виконаних завдань: {completedTodoCount}</p>
         <TodoList
