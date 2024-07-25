@@ -7,6 +7,7 @@ import shortid from "shortid";
 import FilterTodo from "TodoList/FilterTodo";
 import LoginForm from "LoginForm";
 import Modal from "modal";
+import Clock from "Clock";
 
 // import RegisterForm from "TodoList/RegisterForm";
 
@@ -15,6 +16,7 @@ class App extends Component {
     todos: [],
     filter: "",
     isOpenModal: false,
+    isOpenTimer: false,
   };
 
   componentDidMount = () => {
@@ -79,14 +81,19 @@ class App extends Component {
     this.setState(prevState => ({ isOpenModal: !prevState.isOpenModal }));
   };
 
+  toggleTimer = () => {
+    this.setState(prevState => ({ isOpenTimer: !prevState.isOpenTimer }));
+  };
+
   render() {
-    const { todos, filter, isOpenModal } = this.state;
+    const { todos, filter, isOpenModal, isOpenTimer } = this.state;
     const completedTodoCount = this.getCompletedTodoCount();
     const visibleTodos = this.getVisibleTodos();
     const totalTodosCount = todos.length;
 
     return (
       <>
+        {/* Todo List */}
         {/* <p>Всього завдань: {totalTodosCount}</p>
         <p>Виконаних завдань: {completedTodoCount}</p>
         <TodoList
@@ -96,15 +103,19 @@ class App extends Component {
         />
 
         <AddTodo onAddTodo={this.addTask} />
-        <FilterTodo onChange={this.changeFilter} value={filter} />
+        <FilterTodo onChange={this.changeFilter} value={filter} /> */}
 
-        <br />
+        {/* Login Form */}
+        {/* <br />
         <LoginForm /> */}
-        <button type="button" onClick={this.toggleModal}>
+
+        {/* Modal window */}
+        {/* <button type="button" onClick={this.toggleModal}>
           Open modal
         </button>
         {isOpenModal && (
           <Modal toggleModal={this.toggleModal}>
+            <h2> It is title of modal window</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
               quis debitis quibusdam doloremque perspiciatis distinctio
@@ -115,7 +126,13 @@ class App extends Component {
               illo.
             </p>
           </Modal>
-        )}
+        )} */}
+
+        {/* Clock */}
+        {isOpenTimer && <Clock />}
+        <button type="button" onClick={this.toggleTimer}>
+          Open/close Timer
+        </button>
       </>
     );
   }
