@@ -96,7 +96,7 @@ class App extends Component {
     return (
       <>
         {/* Todo List */}
-        {/* <p>Всього завдань: {totalTodosCount}</p>
+        <p>Всього завдань: {totalTodosCount}</p>
         <p>Виконаних завдань: {completedTodoCount}</p>
         <TodoList
           todos={visibleTodos}
@@ -105,7 +105,7 @@ class App extends Component {
         />
 
         <AddTodo onAddTodo={this.addTask} />
-        <FilterTodo onChange={this.changeFilter} value={filter} /> */}
+        <FilterTodo onChange={this.changeFilter} value={filter} />
 
         {/* Login Form */}
         {/* <br />
@@ -136,7 +136,8 @@ class App extends Component {
           Open/close Timer
         </button> */}
 
-        <Tabs items={tabs} />
+        {/* Tabs (shouldComponentUpdate) */}
+        {/* <Tabs items={tabs} /> */}
       </>
     );
   }

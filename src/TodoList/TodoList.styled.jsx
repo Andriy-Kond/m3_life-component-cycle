@@ -15,8 +15,4 @@ const ListItem = styled.li`
   padding: 5px;
 `;
 
-const ItemText = styled.span`
-  text-decoration: ${props => props.isCompleted && "line-through"};
-`;
-
-export { List, ListItem, ItemText };
+export { List, ListItem };
