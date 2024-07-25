@@ -10,6 +10,8 @@ import Modal from "modal";
 import Clock from "Clock";
 import Tabs from "Tabs/Tabs";
 import tabs from "dataBase/tabs.json";
+import { ReactComponent as IconSVG } from "icons/add_icon.svg";
+import IconButton from "IconButton";
 
 // import RegisterForm from "TodoList/RegisterForm";
 
@@ -32,9 +34,18 @@ class App extends Component {
     // console.log("App >> componentDidUpdate >> prevState:::", prevState);
     // console.log("App >> componentDidUpdate >> this.state :>> ", this.state);
 
-    if (prevState.todos !== this.state.todos) {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    const prevTodos = prevState.todos;
+    const nextTodos = this.state.todos;
+
+    if (prevTodos !== nextTodos) {
+      localStorage.setItem("todos", JSON.stringify(nextTodos));
     }
+
+    // Закриття модального вікна (виклик this.toggleModal()) замість його виклику у addTask:
+    if (prevTodos.length < nextTodos.length && prevTodos.length !== 0) {
+      this.toggleModal();
+    }
+    // Перевірка prevTodos.length !== 0 необхідна, бо при першому рендерінгу в нас пустий масив змінюється на поточний. Тобто спрацьовує перевірка prevTodos.length < todos.length і модалка одразу відкрита.
   }
 
   deleteTodo = todoId => {
@@ -55,8 +66,12 @@ class App extends Component {
     const newTodo = { id: shortid.generate(), text, completed: false };
 
     this.setState(prevState => {
-      return { todos: [newTodo, ...prevState.todos] };
+      return {
+        todos: [newTodo, ...prevState.todos],
+      };
     });
+
+    // this.toggleModal();
   };
 
   changeFilter = e => {
@@ -88,7 +103,8 @@ class App extends Component {
   };
 
   render() {
-    const { todos, filter, isOpenModal, isOpenTimer } = this.state;
+    const { todos, filter, isOpenModal, isOpenTimer, isAddTodoOpen } =
+      this.state;
     const completedTodoCount = this.getCompletedTodoCount();
     const visibleTodos = this.getVisibleTodos();
     const totalTodosCount = todos.length;
@@ -103,8 +119,17 @@ class App extends Component {
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
+        {/* Для кнопки, в якій немає тексту, а є незрозуміла іконка необхідно для доступності передавати aria-label (саме через дефіс). Воно піде у allyProps*/}
+        <IconButton onClick={this.toggleModal} aria-label="Додати завдання">
+          <IconSVG width="25" height="25" />
+        </IconButton>
 
-        <AddTodo onAddTodo={this.addTask} />
+        {isOpenModal && (
+          <Modal toggleModal={this.toggleModal}>
+            <AddTodo onAddTodo={this.addTask} />
+          </Modal>
+        )}
+
         <FilterTodo onChange={this.changeFilter} value={filter} />
 
         {/* Login Form */}
@@ -115,6 +140,7 @@ class App extends Component {
         {/* <button type="button" onClick={this.toggleModal}>
           Open modal
         </button>
+
         {isOpenModal && (
           <Modal toggleModal={this.toggleModal}>
             <h2> It is title of modal window</h2>
@@ -138,6 +164,11 @@ class App extends Component {
 
         {/* Tabs (shouldComponentUpdate) */}
         {/* <Tabs items={tabs} /> */}
+
+        {/* Icon Button */}
+        {/* <IconButton>
+          <IconSVG width="120" height="120" />
+        </IconButton> */}
       </>
     );
   }
