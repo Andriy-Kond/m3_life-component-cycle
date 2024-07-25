@@ -1,0 +1,5 @@
+[
+  { "label": "Tab-1", "content": "Вивчити основи React" },
+  { "label": "Tab-2", "content": "Розібртись з React Router" },
+  { "label": "Tab-3", "content": "Пережити Redux" }
+]

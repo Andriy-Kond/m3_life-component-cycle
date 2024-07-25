@@ -18,6 +18,8 @@ class Clock extends Component {
 
   componentWillUnmount() {
     // console.log("componentWillUnmount -> clear intervalId");
+
+    // Якщо не видаляти встановлений setInterval, то буде витік пам'яті (memory leak)
     clearInterval(this.intervalId);
   }
 

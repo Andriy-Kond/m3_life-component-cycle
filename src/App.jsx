@@ -8,6 +8,8 @@ import FilterTodo from "TodoList/FilterTodo";
 import LoginForm from "LoginForm";
 import Modal from "modal";
 import Clock from "Clock";
+import Tabs from "Tabs/Tabs";
+import tabs from "dataBase/tabs.json";
 
 // import RegisterForm from "TodoList/RegisterForm";
 
@@ -129,10 +131,12 @@ class App extends Component {
         )} */}
 
         {/* Clock */}
-        {isOpenTimer && <Clock />}
+        {/* {isOpenTimer && <Clock />}
         <button type="button" onClick={this.toggleTimer}>
           Open/close Timer
-        </button>
+        </button> */}
+
+        <Tabs items={tabs} />
       </>
     );
   }
