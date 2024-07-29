@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/m3_life-component-cycle/static/css/main.e6c13ad2.css",
-    "main.js": "/m3_life-component-cycle/static/js/main.ebb513f5.js",
+    "main.js": "/m3_life-component-cycle/static/js/main.dfe06ab0.js",
     "index.html": "/m3_life-component-cycle/index.html",
     "static/media/add_icon.svg": "/m3_life-component-cycle/static/media/add_icon.f047906f0159253298f435ab6f284301.svg",
     "main.e6c13ad2.css.map": "/m3_life-component-cycle/static/css/main.e6c13ad2.css.map",
-    "main.ebb513f5.js.map": "/m3_life-component-cycle/static/js/main.ebb513f5.js.map"
+    "main.dfe06ab0.js.map": "/m3_life-component-cycle/static/js/main.dfe06ab0.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.ebb513f5.js"
+    "static/js/main.dfe06ab0.js"
   ]
 }
