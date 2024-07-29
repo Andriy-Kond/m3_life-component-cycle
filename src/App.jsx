@@ -41,11 +41,12 @@ class App extends Component {
       localStorage.setItem("todos", JSON.stringify(nextTodos));
     }
 
-    // Закриття модального вікна (виклик this.toggleModal()) замість його виклику у addTask:
-    if (prevTodos.length < nextTodos.length && prevTodos.length !== 0) {
-      this.toggleModal();
-    }
-    // Перевірка prevTodos.length !== 0 необхідна, бо при першому рендерінгу в нас пустий масив змінюється на поточний. Тобто спрацьовує перевірка prevTodos.length < todos.length і модалка одразу відкрита.
+    // // Закриття модального вікна (виклик this.toggleModal()) замість його виклику у addTask:
+    // if (prevTodos.length < nextTodos.length && prevTodos.length !== 0) {
+    //   this.toggleModal();
+    // }
+    // // Перевірка prevTodos.length !== 0 необхідна, бо при першому рендерінгу в нас пустий масив змінюється на поточний. Тобто спрацьовує перевірка prevTodos.length < todos.length і модалка одразу відкрита.
+    // ! АЛЕ ! Це помилка, бо коли LS пустий, то при додаванні першого todo модалка не закриється.
   }
 
   deleteTodo = todoId => {
@@ -71,7 +72,7 @@ class App extends Component {
       };
     });
 
-    // this.toggleModal();
+    this.toggleModal();
   };
 
   changeFilter = e => {
