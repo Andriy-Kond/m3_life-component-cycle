@@ -6,7 +6,7 @@ import AddTodo from "TodoList/AddTodo";
 import shortid from "shortid";
 import FilterTodo from "TodoList/FilterTodo";
 import LoginForm from "LoginForm";
-import Modal from "modal";
+import Modal from "Modal";
 import Clock from "Clock";
 import Tabs from "Tabs/Tabs";
 import tabs from "dataBase/tabs.json";
